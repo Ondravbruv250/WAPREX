@@ -670,98 +670,6 @@
       font-size: 1.1rem;
     }
 
-    /* Cookie banner + modal */
-    .cookie-banner{
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 1100;
-      display: none;
-      background: rgba(0,0,0,.95);
-      border-top: 1px solid rgba(255,255,255,.12);
-      padding: 1rem 0;
-    }
-    .cookie-banner.open{display:block;}
-    .cookie-inner{
-      display: grid;
-      gap: .85rem;
-      align-items: center;
-    }
-    .cookie-text{
-      color: rgba(255,255,255,.85);
-      font-weight: 600;
-      line-height: 1.6;
-    }
-    .cookie-actions{
-      display: flex;
-      flex-wrap: wrap;
-      gap: .6rem;
-    }
-    .cookie-actions .btn{
-      flex: 1 1 140px;
-      justify-content: center;
-    }
-    .cookie-modal .modal-content{
-      position: relative;
-      max-width: 640px;
-    }
-    .cookie-modal .modal-close{
-      position: absolute;
-      right: .75rem;
-      top: .65rem;
-      float: none;
-    }
-    .cookie-rows{
-      display: grid;
-      gap: .9rem;
-    }
-    .cookie-row{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: .85rem 1rem;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-    }
-    .cookie-row strong{font-weight: 800;}
-    .cookie-row small{color: rgba(255,255,255,.65); display:block; margin-top:.25rem;}
-    .toggle{
-      position: relative;
-      width: 56px;
-      height: 30px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.18);
-      cursor: pointer;
-      flex: 0 0 auto;
-      transition: background .2s ease, border-color .2s ease;
-    }
-    .toggle input{display:none;}
-    .toggle span{
-      position: absolute;
-      top: 3px;
-      left: 3px;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: #fff;
-      transition: transform .2s ease;
-    }
-    .toggle.on{
-      background: rgba(65,186,67,.35);
-      border-color: rgba(65,186,67,.45);
-    }
-    .toggle.on span{transform: translateX(26px);}
-
-    @media (min-width: 860px){
-      .cookie-inner{
-        grid-template-columns: 1.6fr 1fr;
-        gap: 1.2rem;
-      }
-    }
 
 
     /* Hide carousel buttons */
@@ -923,18 +831,6 @@
     .footer-legal .label{
       color: rgba(255,255,255,.85);
       font-weight: 700;
-    }
-    .footer-links{
-      margin-top: .4rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .footer-links a{
-      color: var(--green);
-      text-decoration: underline;
-      font-weight: 700;
-      font-size: .9rem;
     }
 
     /* Reveal animations */
@@ -1568,9 +1464,6 @@
         <div class="copyright">
           &copy; 2026 WAPREX. Všechna práva vyhrazena. Profesionální čištění, impregnace a údržba exteriérů. <a href="#privacy-modal" style="color: var(--green); text-decoration: underline;">Zásady ochrany osobních údajů</a>
         </div>
-        <div class="footer-links">
-          <a href="#cookie-settings" class="cookie-settings-link">Nastavení cookies</a>
-        </div>
         <div class="footer-legal">
           <div class="legal-name">WAPREX s.r.o.</div>
           <div><span class="label">IČO:</span> 24380661</div>
@@ -1649,47 +1542,6 @@
     </div>
   </div>
 
-  <!-- Cookie Banner -->
-  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Nastavení cookies">
-    <div class="container cookie-inner">
-      <div class="cookie-text">
-        Používáme cookies, abychom zajistili správné fungování webu a mohli měřit a zlepšovat marketing. Marketingové cookies se spouští jen po vašem souhlasu.
-      </div>
-      <div class="cookie-actions">
-        <button class="btn" id="cookie-accept">Přijmout vše</button>
-        <button class="btn secondary" id="cookie-reject">Odmítnout</button>
-        <button class="btn secondary" id="cookie-settings">Nastavení</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Cookie Settings Modal -->
-  <div id="cookie-modal" class="modal cookie-modal" role="dialog" aria-modal="true" aria-label="Nastavení cookies">
-    <div class="modal-content">
-      <button class="modal-close" id="cookie-modal-close" aria-label="Zavřít">×</button>
-      <h2>Nastavení cookies</h2>
-      <div class="cookie-rows">
-        <div class="cookie-row">
-          <div>
-            <strong>Nezbytné</strong>
-            <small>Vždy zapnuté – nutné pro fungování webu.</small>
-          </div>
-          <div class="toggle on" aria-hidden="true"><span></span></div>
-        </div>
-        <div class="cookie-row">
-          <div>
-            <strong>Marketingové</strong>
-            <small>Pomáhají měřit a zlepšovat marketing.</small>
-          </div>
-          <button class="toggle" id="marketing-toggle" type="button" aria-pressed="false"><span></span></button>
-        </div>
-      </div>
-      <div class="cookie-actions" style="margin-top: 1rem;">
-        <button class="btn" id="cookie-save">Uložit nastavení</button>
-        <button class="btn secondary" id="cookie-cancel">Zrušit</button>
-      </div>
-    </div>
-  </div>
 
   <!-- Paving Modal -->
   <div id="paving-modal" class="modal">
@@ -1984,139 +1836,6 @@
   </div>
 
   <script>
-    // Cookie consent + dynamic Google Ads tag loading
-    const COOKIE_KEY = 'cookieConsent';
-
-    const cookieBanner = document.getElementById('cookie-banner');
-    const cookieModal = document.getElementById('cookie-modal');
-    const cookieAccept = document.getElementById('cookie-accept');
-    const cookieReject = document.getElementById('cookie-reject');
-    const cookieSettings = document.getElementById('cookie-settings');
-    const cookieSave = document.getElementById('cookie-save');
-    const cookieCancel = document.getElementById('cookie-cancel');
-    const cookieModalClose = document.getElementById('cookie-modal-close');
-    const marketingToggle = document.getElementById('marketing-toggle');
-
-    const getConsent = () => {
-      try {
-        const raw = localStorage.getItem(COOKIE_KEY);
-        return raw ? JSON.parse(raw) : null;
-      } catch (e) {
-        return null;
-      }
-    };
-
-    const setConsent = (consent) => {
-      localStorage.setItem(COOKIE_KEY, JSON.stringify(consent));
-    };
-
-    const setToggleState = (enabled) => {
-      marketingToggle.classList.toggle('on', enabled);
-      marketingToggle.setAttribute('aria-pressed', enabled ? 'true' : 'false');
-    };
-
-    const openCookieModal = () => {
-      cookieModal.classList.add('open');
-    };
-
-    const closeCookieModal = () => {
-      cookieModal.classList.remove('open');
-    };
-
-    const showBannerIfNeeded = () => {
-      const consent = getConsent();
-      if (!consent) {
-        cookieBanner.classList.add('open');
-      }
-    };
-
-    const loadGoogleAdsTag = () => {
-      if (window.__adsTagLoaded) return;
-      window.__adsTagLoaded = true;
-
-      const script = document.createElement('script');
-      script.async = true;
-      script.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17945392637';
-      document.head.appendChild(script);
-
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);} // eslint-disable-line no-inner-declarations
-      gtag('js', new Date());
-      gtag('config', 'AW-17945392637');
-    };
-
-    const applyConsent = (consent) => {
-      setConsent(consent);
-      cookieBanner.classList.remove('open');
-
-      if (consent.marketing) {
-        loadGoogleAdsTag();
-      }
-    };
-
-    // Banner actions
-    cookieAccept.addEventListener('click', () => {
-      applyConsent({ necessary: true, marketing: true });
-    });
-
-    cookieReject.addEventListener('click', () => {
-      applyConsent({ necessary: true, marketing: false });
-    });
-
-    cookieSettings.addEventListener('click', () => {
-      const consent = getConsent();
-      setToggleState(consent ? !!consent.marketing : false);
-      openCookieModal();
-    });
-
-    // Settings modal actions
-    marketingToggle.addEventListener('click', () => {
-      const isOn = marketingToggle.classList.contains('on');
-      setToggleState(!isOn);
-    });
-
-    cookieSave.addEventListener('click', () => {
-      const marketing = marketingToggle.classList.contains('on');
-      applyConsent({ necessary: true, marketing });
-      closeCookieModal();
-    });
-
-    cookieCancel.addEventListener('click', () => {
-      closeCookieModal();
-    });
-
-    cookieModalClose.addEventListener('click', () => {
-      closeCookieModal();
-    });
-
-    cookieModal.addEventListener('click', (e) => {
-      if (e.target === cookieModal) {
-        closeCookieModal();
-      }
-    });
-
-    document.querySelectorAll('.cookie-settings-link').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const consent = getConsent();
-        setToggleState(consent ? !!consent.marketing : false);
-        openCookieModal();
-      });
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && cookieModal.classList.contains('open')) {
-        closeCookieModal();
-      }
-    });
-
-    // Initialize on load
-    const initialConsent = getConsent();
-    if (initialConsent && initialConsent.marketing) {
-      loadGoogleAdsTag();
-    }
-    showBannerIfNeeded();
-
     // Open privacy modal when clicking on the link
     document.querySelectorAll('a[href="#privacy-modal"]').forEach(link => {
       link.addEventListener('click', (e) => {
@@ -2313,5 +2032,6 @@
   </script>
 </body>
 </html>
+
 
 
